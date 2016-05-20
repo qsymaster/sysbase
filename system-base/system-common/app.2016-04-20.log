@@ -1,0 +1,3 @@
+2016-04-20 17:43:40 [com.qsy.logback.LogbackDemo:11] - ==============info
+2016-04-20 17:43:40 [com.qsy.logback.LogbackDemo:12] - ==============warn
+2016-04-20 17:43:40 [com.qsy.logback.LogbackDemo:13] - ==============error

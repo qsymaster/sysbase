@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.froad.iamp.mapper.AssetsMapper">
+    <!-- 根据机构id查询订单状态为购买成功的订单投资总额  -->
+    <select id="queryInvestmentAssets" resultType="InvestmentAssets" parameterType="CoOrder">
+		select count(productType) realNumber,sum(subscrAmount) realAmount from co_order 
+		<where>
+			<if test="buyOrganizId != null and buyOrganizId != ''">
+				and buyOrganizId=#{buyOrganizId}
+			</if>
+			<if test="transanctionStatus != null and transanctionStatus != ''">
+				and transanctionStatus in (${transanctionStatus})
+			</if>
+			<if test="isDeal != null and isDeal != ''">
+				and isDeal=#{isDeal}
+			</if>
+		</where>
+		 order by productType
+	</select>
+    
+    <!-- 根据机构id查询订单状态为购买成功的订单投资总额  -->
+    <select id="queryInvestmentAssetsList" resultType="InvestmentAssets" parameterType="CoOrder">
+		select productType,count(productType) realNumber,sum(subscrAmount) realAmount from co_order 
+		<where>
+			<if test="buyOrganizId != null and buyOrganizId != ''">
+				and buyOrganizId=#{buyOrganizId}
+			</if>
+			<if test="transanctionStatus != null and transanctionStatus != ''">
+				and transanctionStatus in (${transanctionStatus})
+			</if>
+			<if test="isDeal != null and isDeal != ''">
+				and isDeal=#{isDeal}
+			</if>
+		</where>
+		  group by productType order by productType
+	</select>
+</mapper>
